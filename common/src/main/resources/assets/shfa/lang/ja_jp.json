@@ -1,0 +1,10 @@
+{
+  "shfa.toggle_shfa": "SHFAの切り替え",
+  "shfa.shfa_category": "SHFA",
+  "shfa.shfa_config": "SHFA設定",
+  "shfa.enabled_blocks": "有効なブロック",
+  "shfa.enabled_blocks_description": "SHFAによって変更されるブロックまたはタグのリスト。なお、このリストに登録されているブロックであっても、必ずしもSHFAでサポートされているとは限りません。",
+  "shfa.config.add_block": "追加するブロック",
+  "shfa.config.add": "追加",
+  "shfa.config.remove": "削除"
+}
