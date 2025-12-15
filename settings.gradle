@@ -14,6 +14,6 @@ include("fabric-like")
 include("fabric")
 //include("quilt")
 include("forge")
-include("NeoForge")
+include("neoforge")
 
 rootProject.name = 'shfa'

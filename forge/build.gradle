@@ -19,11 +19,24 @@ loom {
 }
 
 configurations {
-    common
+    common {
+        canBeResolved = true
+        canBeConsumed = false
+        exclude group: "net.fabricmc", module: "fabric-loader"
+    }
     shadowCommon
     compileClasspath.extendsFrom common
     runtimeClasspath.extendsFrom common
-    developmentForge.extendsFrom common
+    configurations.all {
+        exclude group: "net.fabricmc", module: "fabric-loader"
+        exclude group: "net.minecrell", module: "terminalconsoleappender"
+    }
+    
+    developmentForge {
+        canBeResolved = true
+        canBeConsumed = false
+        exclude group: "net.fabricmc", module: "fabric-loader"
+    }
 }
 
 dependencies {

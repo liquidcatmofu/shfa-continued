@@ -5,20 +5,20 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModLoadingContext;
+
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
-
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod("shfa")
 public class SHFA {
-    public SHFA() {
+    public SHFA(FMLJavaModLoadingContext context) {
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(SHFAClient.class);
 
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.SPEC, "shfa-config.toml");
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> ClientConfig::registerConfigScreen);
+        context.registerConfig(ModConfig.Type.CLIENT, Config.SPEC, "shfa-config.toml");
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ClientConfig.registerConfigScreen(context));
     }
 
     @Mod.EventBusSubscriber(modid = "shfa", value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)

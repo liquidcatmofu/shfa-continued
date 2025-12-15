@@ -42,7 +42,7 @@ public class BlockSelectionList extends ObjectSelectionList<BlockSelectionList.B
             this.parent = parent;
             this.name = name;
             try {
-                Block block = BuiltInRegistries.BLOCK.get(new ResourceLocation(name));
+                Block block = BuiltInRegistries.BLOCK.get(ResourceLocation.parse(name));
                 this.is = new ItemStack(block);
             } catch (Exception ex) {
                 // Tag or invalid block

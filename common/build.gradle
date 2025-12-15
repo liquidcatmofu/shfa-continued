@@ -7,7 +7,13 @@ loom {
 }
 
 dependencies {
-    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
+    modCompileOnly "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
+}
+
+jar {
+    manifest {
+        attributes 'Automatic-Module-Name': 'com.ryanbester.shfa'
+    }
 }
 
 publishing {
