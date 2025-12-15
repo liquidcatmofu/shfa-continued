@@ -11,15 +11,40 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ChainBlock.class)
-public class ChainBlockMixin {
+public abstract class ChainBlockMixin {
+    @Shadow
+    @Final
+    protected static VoxelShape Y_AXIS_AABB;
+    @Shadow
+    @Final
+    protected static VoxelShape X_AXIS_AABB;
+    @Shadow
+    @Final
+    protected static VoxelShape Z_AXIS_AABB;
+
     @Inject(at = @At("HEAD"), method = "getShape(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;", cancellable = true)
     private void getShape(BlockState state, BlockGetter reader, BlockPos pos,
-                          CollisionContext context, CallbackInfoReturnable<VoxelShape> cir) {
+            CollisionContext context, CallbackInfoReturnable<VoxelShape> cir) {
         if (SHFAState.showHitbox(state)) {
             cir.setReturnValue(Shapes.block());
+        }
+    }
+
+    public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        switch ((Direction.Axis) state.getValue(RotatedPillarBlock.AXIS)) {
+            case X:
+                return X_AXIS_AABB;
+            case Z:
+                return Z_AXIS_AABB;
+            default:
+                return Y_AXIS_AABB;
         }
     }
 }
