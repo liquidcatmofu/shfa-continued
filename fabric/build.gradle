@@ -48,6 +48,8 @@ processResources {
                 "mod_sources": "${mod_sources}",
                 "mod_issues": "${mod_issues}"
     }
+    
+    from project(":common").sourceSets.main.resources
 }
 
 shadowJar {

@@ -63,6 +63,8 @@ processResources {
     filesMatching("pack.mcmeta") {
         expand "mod_name": "${mod_name}"
     }
+    
+    from project(":common").sourceSets.main.resources
 }
 
 shadowJar {

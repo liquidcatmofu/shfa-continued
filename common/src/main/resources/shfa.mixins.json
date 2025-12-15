@@ -9,7 +9,8 @@
     "TorchBlockMixin",
     "RodBlockMixin",
     "CarpetBlockMixin",
-    "LanternBlockMixin"
+    "LanternBlockMixin",
+    "WallTorchBlockMixin"
   ],
   "server": [],
   "injectors": {
